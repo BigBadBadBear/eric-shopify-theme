@@ -21,7 +21,7 @@ Main menu:
 
 <div>
   Display products:
-  {% for product in collections['Adequate'].products %}
+  {% for product in collections['adequate'].products %}
     {{- product.title | link_to: product.url }}
   {% endfor %}
 </div>
