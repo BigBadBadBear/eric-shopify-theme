@@ -1,5 +1,14 @@
 {% comment %} <img src="{{ 'puppy.jpg' | asset_url }}"/> {% endcomment %}
 
+Main menu:
+<!-- Main menu -->
+<ul>
+{% for link in linklists.main-menu.links -%}
+  <li>{{ link.title | link_to: link.url }}</li>
+{%- endfor %}
+</ul>
+
+
 <div>
   Menus collections:
   {% for collection in collections %}
@@ -10,8 +19,8 @@
 
 <div>
   Display products:
-  {% for collection in collections %}
-    {{- collection.title | link_to: collection.url }}
+  {% for product in collections['Adequate inventory'].products %}
+    {{- product.title | link_to: product.url }}
   {% endfor %}
 </div>
 
