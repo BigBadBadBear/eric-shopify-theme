@@ -11,15 +11,17 @@ Main menu:
 
 <div>
   Menus collections:
-  {% for collection in collections %}
-    {{- collection.title | link_to: collection.url }}
-  {% endfor %}
+  <ul>
+    {% for collection in collections %}
+      <li>{{{- collection.title | link_to: collection.url }}</li>
+    {% endfor %}
+  </ul>
 </div>
 
 
 <div>
   Display products:
-  {% for product in collections['Adequate inventory'].products %}
+  {% for product in collections['Adequate'].products %}
     {{- product.title | link_to: product.url }}
   {% endfor %}
 </div>
