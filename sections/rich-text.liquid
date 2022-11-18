@@ -18,10 +18,9 @@ Main menu:
   </ul>
 </div>
 
-
 <div>
   Display products:
-  <h2>{{collections['adequate-inventory'.title]}}</h2>
+  <h2>{{collections['adequate-inventory'].title}}</h2>
   {% for product in collections['adequate-inventory'].products %}
     <div>
       <img src='{{product.featured_image | image_url }}'/>
