@@ -21,7 +21,7 @@ Main menu:
 <div>
   Display products:
   <h2>{{collections['adequate-inventory'].title}}</h2>
-  {% for product in collections['adequate-inventory'].products %}
+  {% for product in collections.products %}
     <div>
       <img src='{{product.featured_image | image_url }}'/>
       <h3> {{product.title}}</h3>
