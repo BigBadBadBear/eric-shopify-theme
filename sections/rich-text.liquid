@@ -1,4 +1,15 @@
-{% comment %} <img src="{{ 'puppy.jpg' | asset_url }}"/> {% endcomment %}
+<div>
+  Display products:
+  <h2>{{collections['adequate-inventory'].title}}</h2>
+  {% for product in collections.products %}
+    <div>
+      <img src='{{product.featured_image | image_url }}'/>
+      <h3> {{product.title}}</h3>
+      <h3> {{product.price}}</h3>
+    </div>
+    {{- product.title | link_to: product.url }}
+  {% endfor %}
+</div> 
 
 Main menu:
 <!-- Main menu -->
@@ -13,23 +24,12 @@ Main menu:
   Menus collections:
   <ul>
     {% for collection in collections %}
-      <li>{{{- collection.title | link_to: collection.url }}</li>
+      <li>{{ collection.title | link_to: collection.url }}</li>
     {% endfor %}
   </ul>
 </div>
 
-<div>
-  Display products:
-  <h2>{{collections['adequate-inventory'].title}}</h2>
-  {% for product in collections.products %}
-    <div>
-      <img src='{{product.featured_image | image_url }}'/>
-      <h3> {{product.title}}</h3>
-      <h3> {{product.price}}</h3>
-    </div>
-    {{- product.title | link_to: product.url }}
-  {% endfor %}
-</div>
+
 
 {% schema %}
 {
