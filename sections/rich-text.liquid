@@ -21,7 +21,13 @@ Main menu:
 
 <div>
   Display products:
-  {% for product in collections['adequate'].products %}
+  <h2>{{collections['adequate-inventory'.title]}}</h2>
+  {% for product in collections['adequate-inventory'].products %}
+    <div>
+      <img src='{{product.featured_image | image_url }}'/>
+      <h3> {{product.title}}</h3>
+      <h3> {{product.price}}</h3>
+    </div>
     {{- product.title | link_to: product.url }}
   {% endfor %}
 </div>
