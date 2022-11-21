@@ -1,20 +1,24 @@
-{% form 'cart', cart%}
+<form action="{{ routes.cart_url }}" method="post">
 <h1>Cart</h1>
-
 
     {% for item in cart.items %}
         <div>
             <img src='{{ item.image | image_url: width:200}}'>
             <h2>{{item.title}} </h2>
             <p>{{item.price | money}} </p>
-            <input name='updates[]' value='{{item.quantity}}''>
+            <input type="text" name="updates[]" value="{{ item.quantity }}">
+            <input type="submit" value="Update cart">
             <a href='{{item.url_to_remove}}'>Remove</a>
-
+            <hr/>
+            <p>original_price:{{ item.original_price | money }} </p>
+            <p>original_line_price:{{ item.original_line_price| money }} </p>
+            <p>final_price:{{ item.final_price| money }} </p>
+            <p>final_line_price:{{ item.final_line_price| money }} </p>
         </div>
     {% endfor%}
 
     <hr/>
 
     <p>Total:{{ cart.total_price | money }} </p>
-    <button type='submit' name='checkout'>Checkout</button>
-{% endform%}
+    <input type="submit" name="checkout" value="Checkout">
+</form>
