@@ -3,9 +3,11 @@
   <h2>{{collections['adequate-inventory'].title}}</h2>
   {% for product in collections['adequate-inventory'].products %}
     <div>
+      <a href='{{product.url}}'>
       <img src='{{product.featured_image | image_url:width:400 }}'/>
       <h3> {{product.title}}</h3>
       <h3> {{product.price|money }}</h3>
+      </a>
     </div>
     {{- product.title | link_to: product.url }}
   {% endfor %}
