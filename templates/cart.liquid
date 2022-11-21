@@ -9,17 +9,17 @@
             <input type="text" name="updates[]" value="{{ item.quantity }}">
             <input type="submit" value="Update cart">
             <a href='{{item.url_to_remove}}'>Remove</a>
-            <hr/>
-            {% if line_item.original_price > line_item.final_price %}
-                original_price:<s>{{ line_item.original_price | money }}</s>
+            <br/>
+            {% if item.original_price > item.final_price %}
+                original_price:<s>{{ item.original_price | money }}</s>
             {% endif %}
 
-            final_price: {{ line_item.final_price | money }})
+            final_price: {{ item.final_price | money }}
 
-            {% if line_item.line_level_discount_allocations.size > 0 %}
+            {% if item.line_level_discount_allocations.size > 0 %}
                 Discounts:
                 <ul>
-                  {% for discount_allocation in line_item.line_level_discount_allocations %}
+                  {% for discount_allocation in item.line_level_discount_allocations %}
                     <li>
                       {{ discount_allocation.discount_application.title }}-{{ discount_allocation.amount | money }}
                     </li>
