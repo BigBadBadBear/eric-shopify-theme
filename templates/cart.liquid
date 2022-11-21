@@ -10,10 +10,22 @@
             <input type="submit" value="Update cart">
             <a href='{{item.url_to_remove}}'>Remove</a>
             <hr/>
-            <p>original_price:{{ item.original_price | money }} </p>
-            <p>original_line_price:{{ item.original_line_price| money }} </p>
-            <p>final_price:{{ item.final_price| money }} </p>
-            <p>final_line_price:{{ item.final_line_price| money }} </p>
+            {% if line_item.original_price > line_item.final_price %}
+                original_price:<s>{{ line_item.original_price | money }}</s>
+            {% endif %}
+
+            final_price: {{ line_item.final_price | money }})
+
+            {% if line_item.line_level_discount_allocations.size > 0 %}
+                Discounts:
+                <ul>
+                  {% for discount_allocation in line_item.line_level_discount_allocations %}
+                    <li>
+                      {{ discount_allocation.discount_application.title }}-{{ discount_allocation.amount | money }}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
         </div>
     {% endfor%}
 
