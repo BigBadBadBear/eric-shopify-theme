@@ -1,12 +1,26 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant | default: product.variants.first
+  assign current_selling_plan_allocation = current_variant.selected_selling_plan_allocation
+ 
+  if current_selling_plan_allocation == nil and current_variant.requires_selling_plan
+   assign current_selling_plan_allocation = current_variant.selling_plan_allocations | first
+  endif
+ 
+  assign offer = current_selling_plan_allocation | default: current_variant
+ -%}
 
 <div>
-
   <h1> {{product.title}}</h1>
   <p> {{product.price | money}}</p>
+  <p> offer.price ：{{ offer.price | money }}<p>
   <image src="{{ product.featured_image | image_url:width:200  }}" /> 
   <div>
     {{product.description}}
   </div>
+  {% if offer.compare_at_price > offer.price %}
+    <s>{{ offer.compare_at_price | money }}</s>
+    <span>{% if offer.selling_plan %}Purchase options{% else %}Sale{% endif %}</span>
+  {% endif %}
 
   {% form 'product',product %}
     <select name='id'>
@@ -21,10 +35,49 @@
     <input type="text" name="quantity" min="1" value="1">
     <button type="submit">Add to Cart </button>
     {{ form | payment_button }}
+    {{ form | payment_terms }}
+
+    <input type="hidden" name="id" value="{{ current_variant.id }}">
+    <input type="hidden" name="selling_plan" value="{{ current_selling_plan_allocation.selling_plan.id | default: '' }}">
+  
+    <fieldset>
+      <legend>Product options</legend>
+  
+      {% for option in product.options_with_values %}
+        <label>{{ option.name }}</label>
+  
+        <select>
+          {% for value in option.values %}
+            <option>{{ value }}</option>
+          {% endfor %}
+        </select>
+      {% endfor %}
+    </fieldset>
+  
+    <!-- Pass the product object as JSON so it can be used to update selling plan information using JavaScript -->
+    <fieldset class="selling-plan-fieldset" data-product={{ product | json }}>
+      <legend>Purchase options</legend>
+      {% unless product.requires_selling_plan %}
+      <input type="radio" name="purchase_option"> One-time purchase
+      {% endunless %}
+  
+      {% for group in product.selling_plan_groups %}
+        <input type="radio" name="purchase_option"> {{ group.name}}
+  
+        {% for option in group.options %}
+          <label>{{ option.name }}</label>
+  
+          <select data-position="{{ option.position }}">
+            {% for value in option.values %}
+              <option>{{ value }}</option>
+            {% endfor %}
+          </select>
+        {% endfor %}
+      {% endfor %}
+    </fieldset>
   {% endform %}
 
 </div>
-
 {% schema %}
 {
   "name": "t:sections.main-product.name",
