@@ -169,9 +169,10 @@
           },
           "footer-1": {
             "type": "link_list",
+            "disabled": true,
             "settings": {
               "heading": "Info",
-              "menu": "footer"
+              "menu": "adequate-inventory"
             }
           },
           "footer-2": {
@@ -180,20 +181,12 @@
               "heading": "Our mission",
               "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
             }
-          },
-          "f4a3767f-82c2-4101-9f8e-8821ae8bc059": {
-            "type": "image",
-            "settings": {
-              "image_width": 100,
-              "alignment": "center"
-            }
           }
         },
         "block_order": [
           "footer-0",
           "footer-1",
-          "footer-2",
-          "f4a3767f-82c2-4101-9f8e-8821ae8bc059"
+          "footer-2"
         ],
         "settings": {
           "color_scheme": "background-1",
