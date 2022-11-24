@@ -108,10 +108,13 @@
     "collage": {
       "type": "collage",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "9896e05f-181e-461b-8b40-f1e977bd611b": {
+          "type": "video",
           "settings": {
-            "collection": "adequate-inventory"
+            "cover_image": "shopify:\/\/shop_images\/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "description": "Describe the video",
+            "image_padding": false
           }
         },
         "product": {
@@ -129,7 +132,7 @@
         }
       },
       "block_order": [
-        "collection-0",
+        "9896e05f-181e-461b-8b40-f1e977bd611b",
         "product",
         "collection-1"
       ],
