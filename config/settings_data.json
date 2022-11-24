@@ -119,6 +119,9 @@
     "predictive_search_show_price": false,
     "favicon": "shopify:\/\/shop_images\/baabe3eaeed675b67f3d12f8bf9e2c2d.jpg",
     "currency_code_enabled": true,
+    "cart_type": "drawer",
+    "show_vendor": true,
+    "show_cart_note": true,
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
